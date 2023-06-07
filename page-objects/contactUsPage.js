@@ -53,7 +53,6 @@ exports.contactUsPage = class contactUsPage {
     }
 
     async waitAndValidateSubmissionMessage(){
-        // browser.wait(until.presenceOf(submissionMessage), 10000, 'Element taking too long to appear in the DOM');
         await expect(this.submissionMessage).toHaveText('Thank You for your Message!');
     }
 }
