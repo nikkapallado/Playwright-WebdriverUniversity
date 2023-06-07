@@ -6,7 +6,6 @@ exports.loginPage = class loginPage {
         this.username_input = page.getByPlaceholder('Username');
         this.password_input = page.getByPlaceholder('Password');
         this.login_button = page.getByRole('button');
-        // this.alertDialog = window.alert();
     };
 
     async goToPage(url) {
@@ -26,16 +25,16 @@ exports.loginPage = class loginPage {
     }
 
     async validateSuccessfulLogin() {
-        this.page.on('dialog', async dialog => {
+        this.page.once('dialog', async dialog => {
             expect(dialog.message()).toContain('validation succeeded');
-            await dialog.accept();
+            await dialog.dismiss();
         })
     }
 
     async validateFailedLogin() {
-        this.page.on('dialog', async dialog => {
+        this.page.once('dialog', async dialog => {
             expect(dialog.message()).toContain('validation failed');
-            await dialog.accept();
+            await dialog.dismiss();
         })
     }
 }
